@@ -1,0 +1,8 @@
+{
+  "titulo": "Cursos de programación",
+  "mensaje": "Bienvenidos a nuestro sitio de cursos de Python.",
+  "cursos": [
+    {"nombre": "Python", "descripcion": "Automatización con Jinja2"},
+    {"nombre": "Pelican", "descripcion": "Generación de sitios estáticos"}
+  ]
+}

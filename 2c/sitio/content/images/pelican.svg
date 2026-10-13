@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140" role="img" aria-labelledby="titulo">
+  <title id="titulo">Un pelícano sobre el agua</title>
+  <rect width="240" height="140" fill="#e0f2fe"/>
+  <path d="M0 115 H240 V140 H0 Z" fill="#38bdf8"/>
+  <ellipse cx="95" cy="90" rx="45" ry="25" fill="#fff"/>
+  <path d="M110 90 Q125 60 130 45" fill="none" stroke="#fff" stroke-width="18"/>
+  <circle cx="135" cy="40" r="18" fill="#fff"/>
+  <path d="M150 40 L215 48 L150 55 Z" fill="#f59e0b"/>
+  <circle cx="140" cy="36" r="3" fill="#1e293b"/>
+</svg>
