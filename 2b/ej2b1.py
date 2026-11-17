@@ -13,8 +13,12 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 def crear_entorno(carpeta_plantillas):
     """Crea el entorno para cargar plantillas desde el sistema de archivos."""
-    # TODO: Configura el cargador de archivos y el autoescape para HTML y XML.
-    raise NotImplementedError("TODO: implementar crear_entorno")
+    
+    entorno = Environment(
+        loader=FileSystemLoader(carpeta_plantillas),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    return entorno
 
 
 if __name__ == "__main__":

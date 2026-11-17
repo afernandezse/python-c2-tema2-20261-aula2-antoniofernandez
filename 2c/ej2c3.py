@@ -14,8 +14,29 @@ from pathlib import PurePosixPath
 
 def imagen_estatica(ruta, texto="Ilustración"):
     """Construye una imagen Markdown a partir de una ruta local sencilla."""
-    # TODO: Valida la ruta y el texto y devuelve la referencia Markdown estática.
-    raise NotImplementedError("TODO: implementar imagen_estatica")
+
+    if not isinstance(ruta, str) or not ruta:
+        raise ValueError("La ruta debe ser un texto no vacío.")
+
+    if not texto:
+        raise ValueError("El texto alternativo no puede estar vacío.")
+
+    ruta_posix = PurePosixPath(ruta)
+    nombre = ruta.rsplit("/", maxsplit=1)[-1]
+    if (
+        ruta_posix.is_absolute()
+        or not ruta_posix.name
+        or nombre in {"", ".", ".."}
+        or ".." in ruta
+        or any(caracter.isspace() for caracter in ruta)
+        or any(caracter in ruta for caracter in "\\:()")
+    ):
+        raise ValueError("La ruta contiene caracteres o segmentos no permitidos.")
+
+    if "[" in texto or "]" in texto or "\n" in texto or "\r" in texto:
+        raise ValueError("El texto alternativo no debe contener corchetes ni saltos de línea.")
+
+    return f"![{texto}]({{static}}/{ruta})"
 
 
 if __name__ == "__main__":

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>TODO: bloque titulo</title>
+    <meta charset="utf-8">
+    <title>{% block titulo %}{{ titulo }}{% endblock %}</title>
 </head>
 <body>
-  <!-- TODO (ej2b3): Añade la cabecera común Escuela de Programación.
-       Define los bloques titulo y contenido para las plantillas hijas. -->
-  <main><!-- TODO: bloque contenido --></main>
+    <header>Escuela de Programación</header>
+
+    <main>{% block contenido %}{% endblock %}</main>
 </body>
 </html>

@@ -10,8 +10,20 @@ from jinja2 import Environment
 
 def listar_productos(productos):
     """Devuelve una lista HTML de productos."""
-    # TODO: Renderiza los productos con for/else y autoescape en Jinja2.
-    raise NotImplementedError("TODO: implementar listar_productos")
+    
+    env= Environment(autoescape=True)
+
+    plantilla = env.from_string(
+        "<ul>"
+        "{% for producto in productos %}"
+        "<li>{{ producto }}</li>"
+        "{% else %}"
+        "<li>Sin productos</li>"
+        "{% endfor %}"
+        "</ul>"
+    )
+
+    return plantilla.render(productos=productos)
 
 
 if __name__ == "__main__":

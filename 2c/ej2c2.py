@@ -14,8 +14,23 @@ from datetime import date
 
 def crear_articulo(titulo, fecha, slug, contenido, categoria="Python"):
     """Devuelve Markdown con metadatos Pelican y fecha ISO válida."""
-    # TODO: Valida los metadatos y construye el artículo Markdown de Pelican.
-    raise NotImplementedError("TODO: implementar crear_articulo")
+
+    # Validar metadatos
+    if not all(
+        isinstance(m, str) and m.strip() and "\n" not in m and "\r" not in m
+        for m in [titulo, fecha, slug, categoria]
+    ):
+        raise ValueError("Los metadatos deben ser líneas no vacías sin saltos de línea.")
+    
+    # Validar fecha ISO
+    try:
+        date.fromisoformat(fecha)
+    except ValueError:
+        raise ValueError("La fecha debe ser ISO válida (YYYY-MM-DD).")
+    
+    # Construir el artículo
+    metadatos = f"Title: {titulo}\nDate: {fecha}\nCategory: {categoria}\nSlug: {slug}\n"
+    return f"{metadatos}\n{contenido.rstrip()}\n"
 
 
 if __name__ == "__main__":

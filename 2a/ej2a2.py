@@ -10,8 +10,20 @@ from jinja2 import Environment
 
 def clasificar_nota(nota):
     """Renderiza la clasificación de una nota."""
-    # TODO: Clasifica la nota con if/elif/else dentro de la plantilla.
-    raise NotImplementedError("TODO: implementar clasificar_nota")
+    
+    env = Environment(autoescape=True)
+
+    plantilla = env.from_string(
+        "{% if nota >= 9 %}"
+        "Excelente"
+        "{% elif nota >= 5 %}"
+        "Aprobado"
+        "{% else %}"
+        "Suspenso"
+        "{% endif %}"
+    )
+
+    return plantilla.render(nota=nota)
 
 
 if __name__ == "__main__":

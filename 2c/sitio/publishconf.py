@@ -14,5 +14,13 @@ antes de activar su borrado. No publiques hasta completar y revisar el sitio.
 from pathlib import Path
 import runpy
 
-# TODO: Carga la configuración local y completa los ajustes de producción.
-raise NotImplementedError("TODO: completar publishconf.py antes de generar producción")
+_desarrollo = runpy.run_path(str(Path(__file__).resolve().with_name("pelicanconf.py")))
+globals().update(
+    {nombre: valor for nombre, valor in _desarrollo.items() if not nombre.startswith("__")}
+)
+
+SITEURL = "https://uoc-escola-de-programacio.github.io/python-c2-tema1-sol"
+RELATIVE_URLS = False
+FEED_ALL_ATOM = "feeds/all.atom.xml"
+CATEGORY_FEED_ATOM = "feeds/{slug}.atom.xml"
+DELETE_OUTPUT_DIRECTORY = False

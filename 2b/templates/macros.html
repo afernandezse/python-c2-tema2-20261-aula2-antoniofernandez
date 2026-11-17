@@ -1,3 +1,3 @@
-<!-- TODO (ej2b4): Define la macro tarjeta(nombre, descripcion).
-     Debe generar un article con nombre en h2 y descripcion en p.
-     Este archivo será importado por tarjetas.html; no es una página completa. -->
+{% macro tarjeta(nombre, descripcion) %}
+<article><h2>{{ nombre }}</h2><p>{{ descripcion }}</p></article>
+{% endmacro %}

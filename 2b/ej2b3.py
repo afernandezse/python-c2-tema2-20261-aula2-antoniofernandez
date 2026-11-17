@@ -20,17 +20,25 @@ from generar_web import CARPETA, generar_web
 
 def renderizar_pagina(titulo, mensaje):
     """Renderiza una plantilla hija conservando la estructura de la base."""
-    # TODO: Carga hija.html desde la carpeta del script y renderiza los datos.
-    raise NotImplementedError("TODO: implementar renderizar_pagina")
+    
+    carpeta_plantillas = CARPETA / "templates"
+    entorno = crear_entorno(carpeta_plantillas)
+    plantilla = entorno.get_template("hija.html")
+    html = plantilla.render(titulo=titulo, mensaje=mensaje)
+    return html
+
 
 
 def generar_sitio_heredado(
     fuente=CARPETA / "datos.json",
     destino=CARPETA / "output" / "bienvenida.html",
 ):
-    """Genera una página estática con la plantilla hija y los datos del sitio."""
-    # TODO: Reutiliza generar_web con hija.html y devuelve la ruta generada.
-    raise NotImplementedError("TODO: implementar generar_sitio_heredado")
+    return generar_web(
+        fuente=fuente,
+        carpeta_plantillas=CARPETA / "templates",
+        destino=destino,
+        plantilla="hija.html",
+    )
 
 
 if __name__ == "__main__":

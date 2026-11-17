@@ -16,8 +16,23 @@ import re
 
 def url_proyecto(usuario, repositorio):
     """Devuelve la URL HTTPS de un proyecto GitHub Pages."""
-    # TODO: Valida usuario y repositorio y construye la URL del proyecto.
-    raise NotImplementedError("TODO: implementar url_proyecto")
+    
+    if not isinstance(usuario, str) or not usuario:
+        raise ValueError("El usuario debe ser un texto no vacío.")
+
+    if not re.match(r"^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$", usuario):
+        raise ValueError("El usuario contiene caracteres no permitidos.")
+
+    if not isinstance(repositorio, str) or not repositorio:
+        raise ValueError("El repositorio debe ser un texto no vacío.")
+
+    if repositorio in {".", ".."}:
+        raise ValueError("El repositorio no puede ser '.' ni '..'.")
+
+    if not re.match(r"^[a-zA-Z0-9._-]+$", repositorio):
+        raise ValueError("El repositorio contiene caracteres no permitidos.")
+
+    return f"https://{usuario}.github.io/{repositorio}"
 
 
 if __name__ == "__main__":

@@ -22,8 +22,20 @@ def generar_web(
     plantilla="index.html",
 ):
     """Lee JSON, renderiza la plantilla elegida y escribe el resultado en UTF-8."""
-    # TODO: Lee los datos, renderiza la plantilla y escribe el archivo de salida.
-    raise NotImplementedError("TODO: implementar generar_web")
+    fuente = Path(fuente)
+    carpeta_plantillas = Path(carpeta_plantillas)
+    destino = Path(destino)
+
+    with fuente.open("r", encoding="utf-8") as archivo:
+        datos = json.load(archivo)
+
+    entorno = crear_entorno(carpeta_plantillas)
+    plantilla_html = entorno.get_template(plantilla)
+    html = plantilla_html.render(**datos)
+
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(html, encoding="utf-8")
+    return destino
 
 
 if __name__ == "__main__":

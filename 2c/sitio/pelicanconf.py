@@ -9,14 +9,21 @@ Desactiva los feeds de desarrollo y la paginación.
 
 from pathlib import Path
 
-AUTHOR = "Estudiante UOC"
-SITENAME = "Mi sitio con Pelican"
+AUTHOR = "Antonio Fernández"
+SITENAME = "Unidad 2 - Python C2"
 SITEURL = ""
 
 PATH = str(Path(__file__).resolve().parent / "content")
-STATIC_PATHS = []  # TODO (ej2c3): Incluye la carpeta de recursos estáticos.
+STATIC_PATHS = ["images"]  # TODO (ej2c3): Incluye la carpeta de recursos estáticos.
 RELATIVE_URLS = True
 
-# TODO: Configura TIMEZONE y DEFAULT_LANG según el enunciado.
-# TODO: Desactiva FEED_ALL_ATOM, CATEGORY_FEED_ATOM, TRANSLATION_FEED_ATOM,
+
+TIMEZONE = "Europe/Madrid"
+DEFAULT_LANG = "es"
 # AUTHOR_FEED_ATOM y AUTHOR_FEED_RSS; configura DEFAULT_PAGINATION.
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+DEFAULT_PAGINATION = False

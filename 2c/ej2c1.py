@@ -10,8 +10,8 @@ from pathlib import Path
 
 def comando_quickstart(destino, titulo="Mi sitio con Pelican", autor="Estudiante UOC"):
     """Devuelve los argumentos del asistente, con un destino absoluto."""
-    # TODO: Devuelve los argumentos del asistente sin ejecutarlo.
-    raise NotImplementedError("TODO: implementar comando_quickstart")
+    destino_absoluto = str(Path(destino).resolve())
+    return ["pelican-quickstart", "-p", destino_absoluto, "-t", titulo, "-a", autor, "-l", "es"]
 
 
 if __name__ == "__main__":

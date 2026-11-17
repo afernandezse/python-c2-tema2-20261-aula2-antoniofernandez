@@ -20,16 +20,32 @@ SITIO = Path(__file__).resolve().parent / "sitio"
 
 def comandos_publicacion(sitio=SITIO, salida=None):
     """Devuelve los comandos de generación e importación con rutas absolutas."""
-    # TODO: Construye ambos comandos con rutas absolutas, sin ejecutarlos.
-    raise NotImplementedError("TODO: implementar comandos_publicacion")
+
+    if salida is None:
+        salida = sitio / "output"
+    sitio = Path(sitio).resolve()
+    salida = Path(salida).resolve()
+    return [
+        [
+            "pelican", str(sitio / "content"), "-s",
+            str(sitio / "publishconf.py"), "-o", str(salida),
+        ],
+        ["ghp-import", "-n", "-p", "-b", "gh-pages", str(salida)],
+    ]
+
+    
+    
+
 
 
 def publicar(sitio=SITIO, salida=None, *, confirmar=False):
     """Publica únicamente con autorización; propaga cualquier fallo de comando."""
     if not confirmar:
         raise ValueError("Para publicar se necesita autorización explícita")
-    # TODO: Genera y despliega en orden solo tras la autorización explícita.
-    raise NotImplementedError("TODO: implementar publicar")
+    for comando in comandos_publicacion(sitio, salida):
+        subprocess.run(comando, check=True, cwd=sitio)
+
+    
 
 
 if __name__ == "__main__":

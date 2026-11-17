@@ -20,8 +20,13 @@ from generar_web import CARPETA, generar_web
 
 def renderizar_tarjetas(cursos, titulo="Cursos"):
     """Renderiza el catálogo completo mediante herencia y una macro importada."""
-    # TODO: Renderiza tarjetas.html con el título y los cursos recibidos.
-    raise NotImplementedError("TODO: implementar renderizar_tarjetas")
+
+    carpeta_plantillas = CARPETA / "templates"
+    entorno = crear_entorno(carpeta_plantillas)
+    plantilla = entorno.get_template("tarjetas.html")
+    html = plantilla.render(cursos=cursos, titulo=titulo)
+    return html
+
 
 
 def generar_catalogo(
@@ -29,8 +34,13 @@ def generar_catalogo(
     destino=CARPETA / "output" / "catalogo.html",
 ):
     """Genera el catálogo estático a partir de los datos del sitio."""
-    # TODO: Reutiliza generar_web con tarjetas.html y devuelve la ruta generada.
-    raise NotImplementedError("TODO: implementar generar_catalogo")
+    return generar_web(
+        fuente=fuente,
+        carpeta_plantillas=CARPETA / "templates",
+        destino=destino,
+        plantilla="tarjetas.html",
+    )
+
 
 
 if __name__ == "__main__":
